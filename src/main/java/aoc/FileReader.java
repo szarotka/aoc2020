@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FileReader {
 
-  public List<Integer> readFile(String filePath) {
+  public List<Integer> readIntValues(String filePath) {
     try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
       return stream.map(Integer::parseInt).collect(Collectors.toList());
     } catch (IOException e) {
@@ -21,4 +21,14 @@ public class FileReader {
       return new ArrayList<>();
     }
   }
+
+  public List<String> readStringValues(String filePath) {
+    try (Stream<String> stream = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
+      return stream.collect(Collectors.toList());
+    } catch (IOException e) {
+      log.error("Error during reading file " + e.getMessage());
+      return new ArrayList<>();
+    }
+  }
+
 }

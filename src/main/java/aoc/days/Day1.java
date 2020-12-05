@@ -10,7 +10,7 @@ public class Day1 {
   private FileReader fileReader = new FileReader();
 
   public int find3Numbers(String filePath) {
-    List<Integer> numbers = fileReader.readFile(filePath);
+    List<Integer> numbers = fileReader.readIntValues(filePath);
     for (int i = 0; i < numbers.size(); i++) {
       for (int j = 1; j < numbers.size(); j++) {
         for (int k = 2; k < numbers.size(); k++) {
@@ -34,7 +34,7 @@ public class Day1 {
   }
 
   public int findNumbers(String filePath) {
-    List<Integer> numbers = fileReader.readFile(filePath);
+    List<Integer> numbers = fileReader.readIntValues(filePath);
     for (int i = 0; i < numbers.size(); i++) {
       for (int j = 1; j < numbers.size(); j++) {
         if (i == j) {
