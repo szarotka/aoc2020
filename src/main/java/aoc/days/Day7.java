@@ -27,21 +27,21 @@ public class Day7 {
   public long howManyBagsAreRequiredInShinyGoldBag(String filePath) {
     Map<String, Set<Bag>> bags = readFile(filePath);
 
-    return recursiveCountBags(bags, new Bag(0, "shiny gold"));
+    return howManyBagsAreRequiredInBagWithGivenColor(bags, "shiny gold");
   }
 
-  private long recursiveCountBags(Map<String, Set<Bag>> bags, Bag bag) {
-    if (isLastLevel(bags, bag)) {
-      return 1;
-    }
-
-    return bags.get(bag.color).stream()
-        .map(
-            item ->
-                (isLastLevel(bags, item) ? 0 : item.amount)
-                    + item.amount * recursiveCountBags(bags, item))
+  private long howManyBagsAreRequiredInBagWithGivenColor(Map<String, Set<Bag>> bags, String color) {
+    return bags.get(color).stream()
+        .map(item -> howManyBagsAreRequiredInBag(bags, item))
         .reduce(Long::sum)
         .get();
+  }
+
+  private long howManyBagsAreRequiredInBag(Map<String, Set<Bag>> bags, Bag bag) {
+    if (isLastLevel(bags, bag)) {
+      return bag.amount;
+    }
+    return bag.amount + bag.amount * howManyBagsAreRequiredInBagWithGivenColor(bags, bag.color);
   }
 
   private boolean isLastLevel(Map<String, Set<Bag>> bags, Bag bag) {
