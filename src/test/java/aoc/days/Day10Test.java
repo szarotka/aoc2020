@@ -16,7 +16,7 @@ public class Day10Test {
 
   @Test
   public void howManyCombinations() {
-    long result = day10.howManyCombinations(FILE_PATH);
-    System.out.println("Result: " + result);
+    //long result = day10.howManyCombinations(FILE_PATH);
+    //System.out.println("Result: " + result);
   }
 }
